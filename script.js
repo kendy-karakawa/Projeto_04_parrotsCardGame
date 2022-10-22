@@ -43,7 +43,7 @@ function checkQuantity() {
     }
     gameCards = gameCards.concat(gameCards)
     gameCards.sort(comparador)
-    console.log(gameCards)
+    
 
 
   const insertCard = document.querySelector("#box-card");
@@ -85,9 +85,9 @@ function checkCards(){
     if (listTurnUP.length %2 === 0) { 
       let eIgual = false; 
       for (let i =0; i<listTurnUP.length-1; i++){
-        console.log(listTurnUP)
+        
         if (listTurnUP[listTurnUP.length-1].innerHTML === listTurnUP[i].innerHTML){
-          console.log("è igual")
+          
           eIgual = true
           
 
@@ -101,7 +101,7 @@ function checkCards(){
       }
       if (eIgual === false){
 
-        console.log("nao")
+        
         setTimeout(turnDown,1000)
       }
     
