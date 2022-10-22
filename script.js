@@ -2,6 +2,9 @@ let cardQuantity; // quantidade de cartas selecionados
 let allowed = [4, 6, 8, 10, 12, 14]; // nº de cartas permitidos
 let gameCards = [];
 let cards = ["./img/american.png","./img/basque.png","./img/boliche.png","./img/fute.png","./img/sinuca.png","./img/tenis.png","./img/volei.png",   ]
+let moves = 0;
+let times = 0;
+let codInterval;
 
 window.onload = checkQuantity();
 
@@ -18,6 +21,7 @@ function checkQuantity() {
         if(cardQuantity === allowed[c]){
           notFind = false
           startGame()
+          codInterval = setInterval(countTime, 1000)
           break
         } 
     }
@@ -26,6 +30,7 @@ function checkQuantity() {
     }
   }
 
+  
 
   // selecia cartas para o jogo 
     // 1- embaralhar as cartas(cards) ===ok
@@ -57,20 +62,10 @@ function checkQuantity() {
   }
 }
 
-
-
-// Ao clicar em uma carta, a mesma deve ser virada
-// se for a 1º, permanecer virada ate clicar na segunda
-// se for a 2º:
-// 1- 2º = 1º permanecer virada
-// 2- 2º != 1º apos 1 segundo virar p/ baixo
-
-let Moves = 0;
-let Times = 0;
-
-function count(element){
-
-
+function countTime(){
+ times ++;
+ const clock = document.querySelector(".clock");
+ clock.innerHTML = times;
 }
 
 //virar carta ao clicar 
@@ -78,13 +73,13 @@ function turnUP(card) {
   card.classList.add("flip");
   listTurnUP.push(card);
   checkCards();
-  Moves++;
+  moves++;
 }
 
 let listTurnUP = [];
 
 function checkCards(){
-    // verificar se tem 2 cartas com a ".flip" ===ok
+    // verificar se tem 2 cartas com viradas ===ok
     // verificar se 2ºcarta  === 1ºcarta
     
     if (listTurnUP.length %2 === 0) { 
@@ -98,6 +93,7 @@ function checkCards(){
 
           if (listTurnUP.length ===cardQuantity){
             setTimeout(endGame,1000)
+            clearInterval(codInterval)
           }
           break
         }
@@ -122,8 +118,18 @@ function turnDown(){
 }
 
 function endGame (){
-    alert(`Você ganhou em ${Moves} jogadas!`)
+  alert(`Parabéns! Você ganhou em ${moves} jogadas e em ${times} segundos!`)
+  restart()
+}
 
+function restart(){
+  let again = prompt("Quer jogar mais uma vez ?")
+  notFind = true
+  if(again === "sim"){
+    location.reload()
+  } else if (again !== "não"){
+    restart()
+  }
 }
 
 
