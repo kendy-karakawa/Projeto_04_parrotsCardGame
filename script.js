@@ -65,11 +65,20 @@ function checkQuantity() {
 // 1- 2º = 1º permanecer virada
 // 2- 2º != 1º apos 1 segundo virar p/ baixo
 
+let Moves = 0;
+let Times = 0;
+
+function count(element){
+
+
+}
+
 //virar carta ao clicar 
 function turnUP(card) {
   card.classList.add("flip");
-  listTurnUP.push(card)
-  checkCards()
+  listTurnUP.push(card);
+  checkCards();
+  Moves++;
 }
 
 let listTurnUP = [];
@@ -85,6 +94,11 @@ function checkCards(){
         if (listTurnUP[listTurnUP.length-1].innerHTML === listTurnUP[i].innerHTML){
           console.log("è igual")
           eIgual = true
+          
+
+          if (listTurnUP.length ===cardQuantity){
+            setTimeout(endGame,1000)
+          }
           break
         }
        
@@ -107,7 +121,10 @@ function turnDown(){
 
 }
 
+function endGame (){
+    alert(`Você ganhou em ${Moves} jogadas!`)
 
+}
 
 
 function comparador() { 

@@ -67,6 +67,19 @@ img{
   height: 100px;
 }
 
+.clock{
+  width: 50px;
+  height: 50px;
+  font-size: 36px;
+  color: black;
+  border-radius: 50%;
+  background-color: #99cea8;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
 @media (max-width: 480px) {
 
 
