@@ -68,43 +68,46 @@ function checkQuantity() {
 //virar carta ao clicar 
 function turnUP(card) {
   card.classList.add("flip");
-  verificarAscartas()
+  listTurnUP.push(card)
+  checkCards()
 }
 
-function verificarAscartas(){
+let listTurnUP = [];
+
+function checkCards(){
     // verificar se tem 2 cartas com a ".flip" ===ok
     // verificar se 2ºcarta  === 1ºcarta
-    const cartasComFlip = document.querySelectorAll(".flip");
-    if (cartasComFlip.length === 2) {
-      if (cartasComFlip[0].innerHTML === cartasComFlip[1].innerHTML){
-        console.log("sim ")
-      } else{
-        console.log("nao")
+    
+    if (listTurnUP.length %2 === 0) { 
+      let eIgual = false; 
+      for (let i =0; i<listTurnUP.length-1; i++){
+        console.log(listTurnUP)
+        if (listTurnUP[listTurnUP.length-1].innerHTML === listTurnUP[i].innerHTML){
+          console.log("è igual")
+          eIgual = true
+          break
+        }
+       
       }
-     
-  
-     /*
-      const compararImg = document.querySelectorAll(".flip img#img");
-      console.log(compararImg);
-      if (compararImg[0] === compararImg[1]) {
-        console.log("sim ")
-      } else{
+      if (eIgual === false){
+
         console.log("nao")
-      }*/
-        
-      
+        setTimeout(turnDown,1000)
+      }
+    
       }
     }
 
-  
-
-
-
-
 function turnDown(){
-  let firstCard = document.querySelector(".flipe")
-  firstCard.classList.remove("flip")
+ 
+  listTurnUP[listTurnUP.length-1].classList.remove("flip")
+  listTurnUP[listTurnUP.length-2].classList.remove("flip")
+  listTurnUP.pop()
+  listTurnUP.pop()
+
 }
+
+
 
 
 function comparador() { 
