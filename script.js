@@ -70,10 +70,21 @@ function countTime(){
 
 //virar carta ao clicar 
 function turnUP(card) {
+  moves++;
+
+  if (card.classList.contains("flip")){
+    return
+  }
+
+  if (listTurnUP[0] === undefined || listTurnUP[1] === undefined){
+    
+  
+
   card.classList.add("flip");
   listTurnUP.push(card);
   checkCards();
-  moves++;
+}
+  
 }
 
 let listTurnUP = [];
@@ -89,10 +100,12 @@ function checkCards(){
         if (listTurnUP[listTurnUP.length-1].innerHTML === listTurnUP[i].innerHTML){
           
           eIgual = true
-          
+          listTurnUP.pop()
+          listTurnUP.pop()
 
-          if (listTurnUP.length ===cardQuantity){
-            setTimeout(endGame,1000)
+          
+          if (document.querySelectorAll(".flip").length ===cardQuantity){
+            setTimeout(endGame,500)
             clearInterval(codInterval)
           }
           break
