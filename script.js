@@ -136,12 +136,10 @@ function endGame (){
 }
 
 function restart(){
-  let again = prompt("Quer jogar mais uma vez ?")
-  notFind = true
-  if(again === "sim"){
+  let again = confirm("Quer jogar mais uma vez ?")
+  
+  if(again === true){
     location.reload()
-  } else if (again !== "não"){
-    restart()
   }
 }
 
